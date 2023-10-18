@@ -19,3 +19,10 @@ export const updateUser = (user: userUpdate) =>
     method: "POST",
     data: user,
   });
+  
+  export const createUser = (user:  userUpdate) =>
+  apiClient({
+    path: `users`,
+    method: "POST",
+    data: user,
+  });

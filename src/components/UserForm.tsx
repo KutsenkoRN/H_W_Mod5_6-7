@@ -4,9 +4,10 @@ import { TextField, Button, Container, Grid, Typography } from "@mui/material";
 import { IUser } from "../interfaces/users";
 import * as userApi from "../api/modules/users";
 import { userUpdate } from "../interfaces/userUpdate";
+import { Console } from "console";
 
-const UserForm: FC<IUser> = (user: IUser): ReactElement => {
-  const [updated, setUpdated] = useState<string>("");
+const UserForm: FC<any> = (user: IUser | undefined): ReactElement => {
+  const [message, setMessage] = useState<string>("");
 
   const {
     register,
@@ -15,10 +16,15 @@ const UserForm: FC<IUser> = (user: IUser): ReactElement => {
   } = useForm<userUpdate>({ defaultValues: user });
 
   const onSubmit: SubmitHandler<userUpdate> = async (data: userUpdate) => {
-    data.id = user.id;
-    const res = await userApi.updateUser(data);
-
-    setUpdated(res.createdAt);
+    
+    if(user?.id) {
+      data.id = user?.id;
+      const res = await userApi.updateUser(data);
+      setMessage(res.createdAt);
+    } else {
+      const res = await userApi.createUser(data);
+      setMessage(res.createdAt);
+    }  
   };
 
   return (
@@ -68,8 +74,8 @@ const UserForm: FC<IUser> = (user: IUser): ReactElement => {
           </Grid>
         </Grid>
       </form>
-      {updated && (
-        <Typography variant="body2">User update at {updated}</Typography>
+      {message && (
+        <Typography variant="body2">User update at {message}</Typography>
       )}
     </Container>
   );

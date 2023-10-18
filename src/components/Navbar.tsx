@@ -63,9 +63,7 @@ const Navbar: FC = (): ReactElement => {
               E-mail: {appStore.authStore.email}
             </p>
           </div>
-          <div style={{ marginRight: "1rem" }}>
-            <p style={textStyleSmaller}>Token: {appStore.authStore.token}</p>
-          </div>
+          
           <Link
             onClick={handleLogout}
             key="registration-route"
@@ -142,10 +140,7 @@ const Navbar: FC = (): ReactElement => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            {!!appStore.authStore.token ? (
-              <span
-                style={{ color: 'green' }}>{`Token is: ${appStore.authStore.token}`}</span>
-            ) : 'H_W_Mod5_6_7'}
+            
 
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -201,10 +196,7 @@ const Navbar: FC = (): ReactElement => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            {!!appStore.authStore.token ? (
-              <span
-                style={{ color: 'green' }}>{`Token is: ${appStore.authStore.token}`}</span>
-            ) : 'Homework 7'}
+            
           </Typography>
           <Box
             sx={{

@@ -7,6 +7,8 @@ import Login from "./pages/Login/Login";
 
 // other
 import {FC} from "react";
+import UserForm from "./components/UserForm";
+import UpdateUser from "./pages/UpdateUser/UpdateUser";
 
 // interface
 interface Route {
@@ -33,10 +35,17 @@ export const routes: Array<Route> = [
         component: Resource
     },
     {
-        key: 'create-user-route',
+        key: 'update-user-route',
         title: '',
         path: '/user/:id',
         enabled: false,
+        component: UpdateUser
+    },
+    {
+        key: 'create-user-route',
+        title: 'Create User',
+        path: '/new-user',
+        enabled: true,
         component: CreateUser
     },
     {
